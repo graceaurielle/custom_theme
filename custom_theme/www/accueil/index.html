@@ -1,0 +1,178 @@
+{% from "webshop/templates/includes/macros.html" import attribute_filter_section, field_filter_section, discount_range_filters %}
+{% extends "templates/basic_site.html" %}
+
+{% block title %}Top batiment{% endblock %}
+
+{% block content %}
+
+
+<!-- Hero Section -->
+<section class="relative overflow-hidden bg-background-off pt-16 pb-24 lg:pt-32 lg:pb-40">
+<div class="absolute inset-y-0 right-0 w-full lg:w-1/2 bg-gray-100">
+<div class="h-full w-full bg-cover bg-center object-cover" data-alt="Modern renovated bathroom interior with sleek tiles and fixtures" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRPQLWLJMo8Q0u4-UWa3VdbNRWmk46fy7A3UAryyx9-jVz4g4jlVnbgwZFlGh_vENqAqLRoclIGEAoqnBzRckuDaLUg5BcVZhvql0pwsz-XFHo310FLdhnc1j2yZq8ur4g1Wrd-bEsGs02xGEKcMrAzIlkmdipAeWYoLE-T_Xw04fO4Ag0QhLsVYpV-nu6jxbyKUdPjxuuY9c7t5nBV64zK9dnNuMMfUF-O0_DmsTLlyzZ5DHc2EOKLyIrkdGDdviI21h2xM47M7an');"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-background-off to-transparent lg:via-background-off/20"></div>
+</div>
+<div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<div class="max-w-2xl lg:pr-8">
+
+<h1 class="text-5xl font-black tracking-tight text-text-main sm:text-6xl lg:text-7xl mb-6 leading-[1.1]">
+                    Construisez <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">le Futur.</span>
+</h1>
+<p class="mb-8 text-lg text-text-muted leading-relaxed max-w-lg">
+                    Matériaux premium pour vos chantiers résidentiels et commerciaux. Découvrez une gamme innovante conçue pour durer.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="inline-flex h-12 items-center justify-center rounded-lg bg-primary px-8 text-base font-bold text-white shadow-lg shadow-primary/25 hover:bg-primary/90 transition-all transform hover:-translate-y-0.5" onclick="window.location.href='/all_categories'">
+                        Découvrir nos Catégories
+                    </button>
+
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Bar -->
+<section class="border-y border-gray-100 bg-white py-8">
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+<div class="flex items-center gap-3">
+<div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined">local_shipping</span>
+</div>
+<div>
+<h3 class="text-sm font-bold text-text-main">Livraison Rapide</h3>
+<p class="text-xs text-text-muted">Sous 24/48h sur chantier</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined">verified</span>
+</div>
+<div>
+<h3 class="text-sm font-bold text-text-main">Garantie Pro</h3>
+<p class="text-xs text-text-muted">Certifié norme 2026</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined">savings</span>
+</div>
+<div>
+<h3 class="text-sm font-bold text-text-main">Tarifs Dégressifs</h3>
+<p class="text-xs text-text-muted">Jusqu'à -30% pour les pros</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined">support_agent</span>
+</div>
+<div>
+<h3 class="text-sm font-bold text-text-main">Support Expert</h3>
+<p class="text-xs text-text-muted">Disponible 6j/7</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid Categories -->
+<section class="py-20 bg-background-light">
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<div class="mb-12 flex items-end justify-between">
+<div>
+<h2 class="text-3xl font-bold tracking-tight text-text-main">Catégories Populaires</h2>
+<p class="mt-2 text-text-muted">Tout ce dont vous avez besoin, du sol au plafond.</p>
+</div>
+<a class="hidden sm:flex items-center text-sm font-bold text-primary hover:text-primary/80 transition-colors" href="all-products">
+                    Voir tout <span class="material-symbols-outlined text-lg ml-1">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
+<!-- Large Card -->
+<div class="relative group overflow-hidden rounded-2xl md:col-span-2 row-span-2 bg-gray-100">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="High quality ceramic floor tiles texture close up" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAHm7gOPWGFMjftYIKtYWX02UgtMvyyVD5edwA_ygy2mVd7w2jsWclC8AKlu3hyB4raE60F85vOiDc8Mt9RdepO957Qc9BcsBWidfjiiWiYuTLHzgnw8pCz3GgOHAHhiekZ0ptERh_dl26G6z6US8RORiR2UwVtwPf1SQ_ZgUORv3fcKvEBCJq1vFWpHL-3y5GqwPWe991Xxql2EdwV7vN2YM_nRZh3hH4ZtJTbI1Fbb25qhtwrd5yKgsCd0zbWqUN5jUH7avgVfH00');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8">
+<h3 class="text-2xl font-bold text-white mb-2">Carrelage &amp; Revêtements</h3>         
+<p class="text-gray-200 mb-4 max-w-md text-sm md:text-base">Une sélection exclusive de carreaux italiens et espagnols pour intérieurs et extérieurs modernes.</p>
+<button class="flex items-center rounded-full bg-white/20 backdrop-blur-md px-4 py-2 text-sm font-semibold text-white transition hover:bg-white hover:text-text-main"  onclick="window.location.href='/categorie=carrelage'">
+                            Explorer
+                            <span class="material-symbols-outlined text-base ml-2">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Medium Card 1 -->
+<div class="relative group overflow-hidden rounded-2xl bg-gray-100" onclick="window.location.href='/categorie=plomberie'">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Modern copper plumbing pipes and valves" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAT9azXyYCSGUDWBTXCTJ5DOYsU7VaqFliZrxZ90YiLTjMeGuozt5k4xBiLgyr9H7CiMJXerX-Q-M5BjsnNqHthxmrMVICkckfKUBH2sXOjolhsVO21RDIbNfkdtJ9sZy4eFllXlqVxYjtMHL7Zpw6NmcXeSQ5U3Cnhthzg-C6Htrw7aN0lo08czyYDk9uHey6kml5Rqi32laPH7nCOo2cEFZ_UWsy2RyOsB7cij2C9OjXsl5BiH6jhZB2LSrQqQ46RQ04r9iuTv7Dg');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6">
+<h3 class="text-xl font-bold text-white mb-1">Plomberie &amp; Sanitaire</h3>
+<p class="text-gray-300 text-sm mb-3">Tuyauterie, robinetterie et accessoires.</p>
+</div>
+</div>
+<!-- Medium Card 2 -->
+<div class="relative group overflow-hidden rounded-2xl bg-gray-100" onclick="window.location.href='/categorie=outillage'">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Professional power tools drill on wooden surface" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDEJWpVKKfcXaNSC8H4RDF9RkqblaQqvlH02JNjds1pTEyrns5Q7gAUGVZcl7BusJgQi2pYnoi7KFXLXbwh_kCNqKgJkeMEBGNezVbh5L9kteQIaHf6_exTOBH6obckbK-sFDngfYQPxI6SGtjQzIxTp6NF0UzeYfwWXQz0zMJH7Pbxtn_IKW4oF92ZCnDbaNfq5kbGf7UTg17MLf5XI_hpm7GB3yJ9hv_FxRt0YZF_NodcWSSQixqf1i82kLM9z2bVHV_AcYL2AU7H');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6">
+<h3 class="text-xl font-bold text-white mb-1">Outillage Pro</h3>
+<p class="text-gray-300 text-sm mb-3">Électroportatif et outillage à main.</p>
+</div>
+</div>
+<!-- Small Card / Promo -->
+<!--<div class="relative group overflow-hidden rounded-2xl bg-secondary md:col-span-1 flex flex-col justify-center items-center text-center p-6 text-white">
+<div class="absolute top-0 right-0 p-4 opacity-20">
+<span class="material-symbols-outlined !text-[120px]">percent</span>
+</div>
+<h3 class="text-2xl font-black mb-2 relative z-10">PROMOS FLASH</h3>
+<p class="mb-6 opacity-90 relative z-10">Jusqu'à -50% sur la fin de série 2025.</p>
+<button class="rounded-lg bg-white px-6 py-2 text-sm font-bold text-secondary shadow-sm hover:bg-gray-50 relative z-10">
+                        Voir les Offres
+                    </button>
+</div> -->
+</div>
+</div>
+</section>
+
+<style>
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+    </style> 
+
+<!-- Professional Section -->
+<section class="relative py-24 bg-gray-900 overflow-hidden">
+<div class="absolute inset-0 opacity-30 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/90 to-transparent"></div>
+<div class="absolute right-0 top-0 bottom-0 w-full md:w-1/2 opacity-40 md:opacity-100">
+<div class="w-full h-full bg-cover bg-center" data-alt="Construction worker reviewing blueprints on site" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCIj3PIb1Y6OIhxcMbQNWvnjpdulRTL459SLsByDdO3e5SfIC5lZWprR46iuTB1-4DSOZnelF6StAyUoSPE5kiDk2NVEl5-JfI6yYlsahjQCC8vgO-S0fTGrlFXsFYus42mW5woaJYQaGf3aGO04k9YyL6qFKzJBvLaEDWrzewRGl7CQv-0jHQSwVUW4RgqrENZ6pmUH3V6tFy5evvsf3XRBE9Vzgl8_vXVkRC7uvnVADyuBlxdp3_EBocaSG7WKJTT70qmA-pDmq7v');"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-gray-900 to-transparent"></div>
+</div>
+<div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col justify-center h-full">
+<div class="max-w-xl">
+<h2 class="text-4xl font-bold text-white mb-6">Vous êtes un particulier ou une entreprise ?</h2>
+<p class="text-gray-300 text-lg mb-8">Top-Batiment est ce qu'il vous faut ! Rejoignez nous et bénéficiez de tarifs préférentiels, d'interlocuteur  dédié et de la livraison express quelques soit l'endroit.</p>
+<ul class="space-y-4 mb-8">
+<li class="flex items-center text-gray-200">
+<span class="material-symbols-outlined text-secondary mr-3">check_circle</span>
+                        Remise immédiate jusqu'à 20% pour nos meilleurs client ! 
+                    </li>
+<li class="flex items-center text-gray-200">
+<span class="material-symbols-outlined text-secondary mr-3">check_circle</span>
+                        Facturation suivie
+                    </li>
+<li class="flex items-center text-gray-200">
+<span class="material-symbols-outlined text-secondary mr-3">check_circle</span>
+                        Livraison sous 2 jours
+                    </li>
+</ul>
+<p class="text-gray-300 text-lg mb-8"> Qu'attendez vous? Rejoignez nous maintenant ! </p>
+
+<button class="inline-flex h-12 items-center justify-center rounded-lg bg-secondary px-8 text-base font-bold text-white shadow-lg hover:bg-secondary/90 transition-all">
+                    Créer un Compte
+                </button>
+</div>
+</div>
+</section>
+{% endblock %}
+

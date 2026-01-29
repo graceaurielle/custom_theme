@@ -1,0 +1,290 @@
+{% extends "templates/custom_base.html" %}
+
+{% block title %}Inscription - Top Batiment{% endblock %}
+
+{% block content %}
+
+
+<div class="flex-grow flex items-center justify-center py-12 px-6">
+<div class="w-full max-w-[1000px] grid md:grid-cols-2 gap-16 items-start">
+<!-- Left Side: Content & Branding -->
+<div class="flex flex-col gap-8 pt-12">
+<div>
+<h2 class="text-5xl font-black text-gray-900 dark:text-white leading-[1.1] mb-6">
+                        Construisons <br/>
+<span class="text-primary">votre succès</span> ensemble.
+                    </h2>
+<p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-md">
+                        Accédez à des tarifs exclusifs pour les professionnels, suivez vos livraisons de chantier en temps réel et bénéficiez d'un conseiller dédié.
+                    </p>
+</div>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">local_shipping</span>
+</div>
+<div>
+<p class="font-bold text-gray-900 dark:text-white">Livraison Chantier Express</p>
+<p class="text-sm text-gray-500">Livraison sur site en moins de 24h pour vos urgences.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">sell</span>
+</div>
+<div>
+<p class="font-bold text-gray-900 dark:text-white">Tarifs Dégressifs</p>
+<p class="text-sm text-gray-500">Plus vous commandez, plus vous économisez sur vos matériaux.</p>
+</div>
+</div>
+</div>
+<div class="mt-8 p-6 rounded-2xl bg-gray-50 dark:bg-gray-900/50 border border-gray-100 dark:border-gray-800">
+<div class="flex items-center gap-3 mb-3">
+<div class="flex -space-x-2">
+<img alt="Artisan" class="size-8 rounded-full border-2 border-white dark:border-gray-900 object-cover" data-alt="Photo de profil d'un artisan souriant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyNnONcOjueHt1zlDoAcfY8FA7EAEhukq7ZV_LgU0yjBCSNy3TmAG2hEI6A73melUfHaFm8zsnSiMQxAmhT9M5VWMVLoV7v7xFKQ3BaErnjhm3mVGHmEztXHQHLF2osi-r8wL6XmHQbP3TUawgimgB_2kre91Outdd-tlXnkHXOIJ6aMadfPJWJCFg_AZAHELESlX8rVEmEb1MQHRHcrhRFpUV36JNKaTfioxKs19o3IrSrvdnT1Sz_wg1T4RU48lb1ASOnu7R8Gc4"/>
+<img alt="Architecte" class="size-8 rounded-full border-2 border-white dark:border-gray-900 object-cover" data-alt="Photo de profil d'une architecte" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCencb1fcDIfiOeYtLWS0RCQ_TWGrVNFNpnCHzxevojircITssX9tbDN_yHf1DKXBVambX3KK_iMVDxbHN8U1-dKqLj9g1DngrSI0viLq0677ybZH6cwmkSJPWJsYVcmoTe_YM-NGtp061aCYlX2DCMk3YvbX-on8D-rgJPXKJbzhnmCAWsJqd3BPh5qj61pwTe1yy5qp3NWS7nOdY6pnhhwnuJ1NsGoUg-XlOi87kRwxpkrl7I4m3Fh6cYbAz19UBpw7eXGq7CV-H3"/>
+</div>
+<p class="text-xs font-medium text-gray-500">+ de 15,000 pros nous font confiance</p>
+</div>
+<p class="text-sm italic text-gray-600 dark:text-gray-400">"L'interface est d'une clarté incroyable, je gagne 30 minutes sur chaque commande de carrelage."</p>
+<p class="text-xs font-bold mt-2 text-gray-900 dark:text-white">— Marc D., Carreleur Expert</p>
+</div>
+</div>
+<!-- Right Side: Registration Form -->
+
+
+
+<div class="min-h-[70vh] flex items-center justify-center bg-background-off py-12">
+    <div class="max-w-md w-full mx-auto px-4">
+        <!-- Logo -->
+        <div class="text-center mb-8">
+            <a href="/accueil" class="inline-flex items-center gap-3">
+                <div class="h-14 w-14 rounded-xl bg-primary flex items-center justify-center text-white">
+                    {% set logo = frappe.db.get_value("Website Settings", None, "app_logo") %}
+                    <img src="{{ logo or '/assets/custom_theme/images/default-logo.png' }}" class="h-10 w-10">
+                </div>
+                <span class="text-2xl font-extrabold">Top Batiment</span>
+            </a>
+            <h1 class="mt-6 text-3xl font-bold text-text-main">Créer un compte</h1>
+            <p class="mt-2 text-text-muted">Profitez de tarifs préférentiels et suivez vos commandes</p>
+        </div>
+
+        <!-- Formulaire -->
+        <div class="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm">
+            <form id="register-form">
+                <div class="space-y-5">
+                    <!-- Nom complet -->
+                    <div>
+                        <label class="block text-sm font-medium text-text-main mb-2" for="full_name">
+                            Nom complet *
+                        </label>
+                        <input type="text" class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20" 
+                               id="full_name" name="full_name" required placeholder="Jean Dupont">
+                    </div>
+                    
+                    <!-- Email -->
+                    <div>
+                        <label class="block text-sm font-medium text-text-main mb-2" for="email">
+                            Adresse email *
+                        </label>
+                        <input type="email" class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20" 
+                               id="email" name="email" required placeholder="exemple@domaine.com">
+                    </div>
+                    
+                    <!-- Téléphone (optionnel) -->
+                    <div>
+                        <label class="block text-sm font-medium text-text-main mb-2" for="phone">
+                            Téléphone
+                        </label>
+                        <input type="tel" class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20" 
+                               id="phone" name="phone" placeholder="06 12 34 56 78">
+                    </div>
+                    
+                    <!-- Nom entreprise (optionnel) -->
+                    <div>
+                        <label class="block text-sm font-medium text-text-main mb-2" for="company_name">
+                            Nom de l'entreprise (si professionnel)
+                        </label>
+                        <input type="text" class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20" 
+                               id="company_name" name="company_name" placeholder="Entreprise Dupont SAS">
+                    </div>
+                    
+                    <!-- Mot de passe -->
+                    <div>
+                        <label class="block text-sm font-medium text-text-main mb-2" for="new_password">
+                            Mot de passe *
+                        </label>
+                        <input type="password" class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20" 
+                               id="new_password" name="new_password" required minlength="8" placeholder="Minimum 8 caractères">
+                        <p class="mt-1 text-xs text-text-muted">Inclure majuscules, minuscules et chiffres</p>
+                    </div>
+                    
+                    <!-- Confirmation mot de passe -->
+                    <div>
+                        <label class="block text-sm font-medium text-text-main mb-2" for="confirm_password">
+                            Confirmer le mot de passe *
+                        </label>
+                        <input type="password" class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20" 
+                               id="confirm_password" required placeholder="Répétez votre mot de passe">
+                    </div>
+                    
+                    <!-- CGV 
+                    <div class="flex items-start">
+                        <input type="checkbox" id="terms" name="terms" required 
+                               class="mt-1 h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary">
+                        <label for="terms" class="ml-2 text-sm text-text-muted">
+                            J'accepte les 
+                            <a href="/mentions-legales" class="text-primary hover:text-primary/80">conditions générales de vente</a>
+                            et la 
+                            <a href="/confidentialite" class="text-primary hover:text-primary/80">politique de confidentialité</a>
+                        </label>
+                    </div> -->
+                    
+                    <!-- Newsletter 
+                    <div class="flex items-start">
+                        <input type="checkbox" id="newsletter" name="newsletter"
+                               class="mt-1 h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary">
+                        <label for="newsletter" class="ml-2 text-sm text-text-muted">
+                            Je souhaite recevoir les offres promotionnelles et nouveautés Top Batiment
+                        </label>
+                    </div> -->
+                    
+                    <!-- Bouton Inscription -->
+                    <button type="submit" 
+                            class="w-full rounded-xl bg-primary py-3 text-sm font-bold text-white hover:bg-primary/90 transition-colors">
+                        Créer mon compte
+                    </button>
+                </div>
+            </form>
+            
+            <!-- Messages -->
+            <div id="success-alert" class="mt-4 hidden rounded-lg bg-green-50 p-4 text-sm text-green-600"></div>
+            <div id="error-alert" class="mt-4 hidden rounded-lg bg-red-50 p-4 text-sm text-red-600"></div>
+            
+            <!-- Séparateur -->
+            <div class="mt-8 flex items-center">
+                <div class="flex-grow border-t border-gray-200"></div>
+                <span class="mx-4 text-sm text-text-muted">ou</span>
+                <div class="flex-grow border-t border-gray-200"></div>
+            </div>
+            
+            <!-- Lien Connexion -->
+            <div class="mt-8 text-center">
+                <p class="text-text-muted">
+                    Vous avez déjà un compte ?
+                    <a href="/authentification/login" class="font-bold text-primary hover:text-primary/80">
+                        Se connecter
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</div>
+</div>
+
+<script>
+// Attendre que Frappe soit chargé
+function waitForFrappe(callback) {
+    if (typeof frappe !== 'undefined') {
+        callback();
+    } else {
+        setTimeout(() => waitForFrappe(callback), 100);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('register-form');
+    const successAlert = document.getElementById('success-alert');
+    const errorAlert = document.getElementById('error-alert');
+    
+    if (!form) return;
+    
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        
+        // Validation
+        const new_password = document.getElementById('new_password').value;
+        const confirm_password = document.getElementById('confirm_password').value;
+        
+        if (new_password !== confirm_password) {
+            showAlert(errorAlert, "Les mots de passe ne correspondent pas.");
+            return;
+        }
+        
+        if (new_password.length < 8) {
+            showAlert(errorAlert, "Le mot de passe doit contenir au moins 8 caractères.");
+            return;
+        }
+        
+      //if (!document.getElementById('terms').checked) {
+           // showAlert(errorAlert, "Vous devez accepter les conditions générales.");
+         //   return;
+      //  }
+        
+        // Préparation des données
+        const formData = {
+            full_name: document.getElementById('full_name').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            new_password: new_password,
+            phone: document.getElementById('phone')?.value.trim() || '',
+            company_name: document.getElementById('company_name')?.value.trim() || ''
+        };
+        
+        // Désactiver le bouton
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Création en cours...';
+        hideAlerts();
+        
+        // Appel API
+        waitForFrappe(() => {
+            frappe.call({
+                method: "custom_theme.api.create_website_user",
+                args: formData,
+                callback: function(r) {
+                    if (r.message && r.message.success) {
+                        // Succès
+                        showAlert(successAlert, 
+                            `Compte créé avec succès ! Numéro client : ${r.message.customer_id || 'N/A'}. Redirection vers la connexion...`);
+                        
+                        // Redirection après 3 secondes
+                        setTimeout(() => {
+                            window.location.href = '/authentification/login';
+                        }, 1000);
+                        
+                    } else {
+                        // Erreur
+                        showAlert(errorAlert, r.message?.error || "Une erreur est survenue lors de l'inscription.");
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalText;
+                    }
+                },
+                error: function(err) {
+                    showAlert(errorAlert, "Erreur de connexion au serveur. Veuillez réessayer.");
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                }
+            });
+        });
+    });
+    
+    function showAlert(alertElement, message) {
+        hideAlerts();
+        alertElement.textContent = message;
+        alertElement.classList.remove('hidden');
+    }
+    
+    function hideAlerts() {
+        successAlert.classList.add('hidden');
+        errorAlert.classList.add('hidden');
+    }
+});
+</script>
+{% endblock %}

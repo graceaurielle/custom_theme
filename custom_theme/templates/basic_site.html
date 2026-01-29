@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html class="light" lang="fr">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+
+
+     <!-- TITRE DE L'ONGLET -->
+    <title>{% block title %}Top batiment{% endblock %}</title>
+    {% set logo = frappe.db.get_value("Website Settings", None, "app_logo") %}
+
+    <!-- FAVICON (logo dans l'onglet) -->
+     <link rel="apple-touch-icon" href="{{ logo or '/assets/custom_theme/images/téléchargement.png' }}">
+    <!-- Pour les différents formats de favicon -->
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ logo or '/assets/custom_theme/images/téléchargement.png' }}">
+    <link rel="icon" type="image/png" sizes="512x512" href="{{ logo or '/assets/custom_theme/images/téléchargement.png' }}">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <!-- Configuration Tailwind -->
+   <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#E33900",
+                        "secondary": "#E38700",
+                        "background-light": "#FFFFFF",
+                        "background-off": "#F9F9F9",
+                        "background-dark": "#1a1a1a",
+                        "text-main": "#1d100c",
+                        "text-muted": "#6b7280",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.375rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <!-- Styles personnalisés -->
+  <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar hiding for cleaner look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+    
+    {% block head_extra %}{% endblock %}
+</head>
+<body class="bg-background-light text-text-main antialiased selection:bg-primary selection:text-white">
+    
+    <!-- Header -->
+    {% include "templates/includes/header2.html" %}
+    
+    <!-- Main Content -->
+    <main class="flex-grow">
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- Footer -->
+    {% include "templates/includes/footer2.html" %}
+    
+    
+    {% block script_extra %}{% endblock %}
+</body>
+
+<!-- script js de l'header pour le toogle -->
+    <script src="/assets/custom_theme/js/toogle_header.js"></script>
+   
+</html>

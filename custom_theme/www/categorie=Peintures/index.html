@@ -1,0 +1,127 @@
+{% extends "templates/basic_site.html" %}
+
+{% block title %}Top peintures{% endblock %}
+
+{% block content %}
+<!-- Main Layout Container -->
+<div class="max-w-[1440px] mx-auto px-4 md:px-10 pb-20 pt-6">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 py-4 text-sm">
+<a class="text-text-muted hover:text-primary transition-colors font-medium" href="#">Accueil</a>
+<span class="text-text-muted/50">/</span>
+<a class="text-text-muted hover:text-primary transition-colors font-medium" href="#">Produits</a>
+<span class="text-text-muted/50">/</span>
+<span class="text-text-main dark:text-white font-semibold">Peintures</span>
+</div>
+<!-- Page Heading & Intro -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 mt-2">
+<div class="flex flex-col gap-3 max-w-2xl">
+<h1 class="text-text-main dark:text-white text-4xl md:text-5xl font-black leading-tight tracking-[-0.02em]">
+                   Peintures 
+                </h1>
+<p class="text-text-muted text-lg font-normal leading-relaxed max-w-xl">
+Donnez vie à vos envies avec notre gamme de peintures, intérieures comme extérieures. Qualité professionnelle, finis durables et palette infinie pour un résultat parfait.                </p>
+</div>
+<!-- Quick Sort (Mobile/Desktop) -->
+<div class="flex items-center gap-3">
+<div class="relative group">
+
+<!-- Dropdown could go here -->
+</div>
+</div>
+</div>
+<!-- Layout: Sidebar + Grid -->
+<div class="flex flex-col lg:flex-row gap-8">
+
+<!-- Main Content: Active Filters & Grid -->
+<div class="flex-1 flex flex-col gap-6">
+
+<!-- Product Grid -->
+
+
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+
+{% for p in products %}
+<div onclick="window.location.href='{{ p.route }}'" class="group relative bg-white dark:bg-surface-dark border border-[#f4eae6] dark:border-white/5 rounded-xl overflow-hidden hover:shadow-xl hover:shadow-primary/5 hover:border-primary/30 transition-all duration-300 flex flex-col">
+
+    {% if p.badge %}
+    <div class="absolute top-3 left-3 z-10">
+        <span class="bg-primary text-white text-xs font-bold px-2.5 py-1 rounded shadow-sm">
+            {{ p.badge }}
+        </span>
+    </div>
+    {% endif %}
+
+    <div class="absolute top-3 right-3 z-10">
+        <button
+            class="wishlist-btn bg-white/90 dark:bg-black/40 text-text-muted dark:text-white p-1.5 rounded-full hover:bg-primary hover:text-white transition-colors"
+            data-item-code="{{ p.item_code }}">
+            <span class="material-symbols-outlined text-[20px]">
+                {{ "favorite" if p.in_wishlist else "favorite_border" }}
+            </span>
+        </button>
+    </div>
+
+    <a href="/{{ p.route }}">
+        <div class="relative aspect-square overflow-hidden bg-gray-100">
+            <img
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                src="{{ p.image or '/assets/frappe/images/no-image.png' }}"
+                alt="{{ p.name }}">
+        </div>
+    </a>
+
+    <div class="p-4 flex flex-col flex-1">
+        <h3 class="text-text-main dark:text-white font-bold text-lg leading-tight mb-1 group-hover:text-primary transition-colors">
+            {{ p.name }}
+        </h3>
+
+        <p class="text-sm text-text-muted mb-4 line-clamp-2">
+            {{ p.short_description }}
+        </p>
+
+        <div class="mt-auto flex items-end justify-between">
+            <div class="flex flex-col">
+                {% if p.standard_rate and p.standard_rate > p.price %}
+                <span class="text-xs text-text-muted line-through">
+                    {{ p.standard_rate }} 
+                </span>
+                {% endif %}
+                <span class="text-2xl font-black text-primary">
+                    {{ p.price }} 
+                </span>
+            </div>
+
+            <button
+                class="add-to-cart lg:hidden bg-primary/10 p-2 rounded-lg text-primary"
+                data-item-code="{{ p.item_code }}">
+                <span class="material-symbols-outlined">add</span>
+            </button>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+</div>
+
+
+<!-- Pagination -->
+<div class="flex justify-center mt-8">
+<nav class="flex items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-[#ead4cd] dark:border-white/10 text-text-muted hover:bg-white dark:hover:bg-white/5 hover:text-primary transition-colors disabled:opacity-50">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-white font-bold shadow-lg shadow-primary/30">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-[#ead4cd] dark:border-white/10 text-text-main dark:text-white font-medium hover:border-primary hover:text-primary transition-colors bg-white dark:bg-surface-dark">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-[#ead4cd] dark:border-white/10 text-text-main dark:text-white font-medium hover:border-primary hover:text-primary transition-colors bg-white dark:bg-surface-dark">3</button>
+<span class="text-text-muted px-2">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-[#ead4cd] dark:border-white/10 text-text-muted hover:bg-white dark:hover:bg-white/5 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</nav>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

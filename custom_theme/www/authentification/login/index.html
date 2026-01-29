@@ -1,0 +1,222 @@
+{% extends "templates/basic_site.html" %}
+
+{% block title %}Connexion - Top Batiment{% endblock %}
+
+{% block content %}
+<div class="min-h-[70vh] flex items-center justify-center bg-background-off py-16">
+    <div class="max-w-md w-full mx-auto px-4">
+        <!-- Logo -->
+        <div class="text-center mb-8">
+            <a href="/accueil" class="inline-flex items-center gap-3">
+                <div class="h-14 w-14 rounded-xl bg-primary flex items-center justify-center text-white">
+                    {% set logo = frappe.db.get_value("Website Settings", None, "app_logo") %}
+                    <img src="{{ logo or '/assets/custom_theme/images/default-logo.png' }}" class="h-10 w-10">
+                </div>
+                <span class="text-2xl font-extrabold">Top Batiment</span>
+            </a>
+            <h1 class="mt-6 text-3xl font-bold text-text-main">Connexion</h1>
+            <p class="mt-2 text-text-muted">Accédez à votre compte client ou professionnel</p>
+        </div>
+
+        <!-- Formulaire -->
+        <div class="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm">
+            <form id="login-form" method="POST" action="/api/method/login">
+                <input type="hidden" name="cmd" value="login">
+                
+                <div class="space-y-5">
+                    <!-- Champ Email -->
+                    <div>
+                        <label class="block text-sm font-medium text-text-main mb-2" for="email">
+                            Email
+                        </label>
+                        <input
+                            id="email"
+                            name="usr"
+                            type="email"
+                            required
+                            class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20"
+                            placeholder="votre@email.com"
+                        >
+                    </div>
+
+                    <!-- Champ Mot de passe -->
+                    <div>
+                        <label class="block text-sm font-medium text-text-main mb-2" for="password">
+                            Mot de passe
+                        </label>
+                        <input
+                            id="password"
+                            name="pwd"
+                            type="password"
+                            required
+                            class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20"
+                            placeholder="Votre mot de passe"
+                        >
+                    </div>
+
+                    <!-- Options -->
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <input
+                                id="remember-me"
+                                name="remember_me"
+                                type="checkbox"
+                                class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                            >
+                            <label for="remember-me" class="ml-2 text-sm text-text-muted">
+                                Se souvenir de moi
+                            </label>
+                        </div>
+                        <a href="#" class="text-sm font-medium text-primary hover:text-primary/80">
+                            Mot de passe oublié ?
+                        </a>
+                    </div>
+
+                    <!-- Bouton Connexion -->
+                    <button
+                        type="submit"
+                        class="w-full rounded-xl bg-primary py-3 text-sm font-bold text-white hover:bg-primary/90 transition-colors"
+                    >
+                        Se connecter
+                    </button>
+                </div>
+            </form>
+
+            <!-- Message d'erreur -->
+            <div id="login-error" class="mt-4 hidden rounded-lg bg-red-50 p-4 text-sm text-red-600"></div>
+
+            <!-- Séparateur -->
+            <div class="mt-8 flex items-center">
+                <div class="flex-grow border-t border-gray-200"></div>
+                <span class="mx-4 text-sm text-text-muted">ou</span>
+                <div class="flex-grow border-t border-gray-200"></div>
+            </div>
+
+            <!-- Lien Inscription -->
+            <div class="mt-8 text-center">
+                <p class="text-text-muted">
+                    Nouveau client ?
+                    <a href="/authentification/register" class="font-bold text-primary hover:text-primary/80">
+                        Créer un compte
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Bénéfices compte -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-white rounded-xl border border-gray-100 p-4 text-center">
+                <div class="text-primary mb-2">
+                    <span class="material-symbols-outlined">history</span>
+                </div>
+                <p class="text-xs text-text-muted">Suivi de commande</p>
+            </div>
+            <div class="bg-white rounded-xl border border-gray-100 p-4 text-center">
+                <div class="text-primary mb-2">
+                    <span class="material-symbols-outlined">favorite</span>
+                </div>
+                <p class="text-xs text-text-muted">Listes de souhaits</p>
+            </div>
+            <div class="bg-white rounded-xl border border-gray-100 p-4 text-center">
+                <div class="text-primary mb-2">
+                    <span class="material-symbols-outlined">sell</span>
+                </div>
+                <p class="text-xs text-text-muted">Tarifs professionnels</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+// DÉSACTIVER la redirection par défaut de Frappe
+if (typeof frappe !== 'undefined') {
+    frappe.redirect_after_login = function() {
+        return '/accueil'; // Toujours rediriger vers accueil
+    };
+}
+
+document.getElementById('login-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const form = e.target;
+    const errorDiv = document.getElementById('login-error');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    
+    // Afficher chargement
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Connexion en cours...';
+    errorDiv.classList.add('hidden');
+    
+    try {
+        const formData = new FormData(form);
+        
+        // CRITIQUE : Ajouter le paramètre de redirection
+        formData.append('redirect-to', '/accueil');
+        // Aussi essayer avec ce nom de paramètre
+        formData.append('redirect_to', '/accueil');
+        
+        const response = await fetch('/api/method/login', {
+            method: 'POST',
+            body: formData,
+            credentials: 'include'
+        });
+        
+        const data = await response.json();
+        
+        console.log('Réponse login:', data); // Pour debug
+        
+        // CAS 1 : Connexion réussie
+        if (data.message === 'Logged In' || response.ok) {
+            // Redirection FORCÉE vers accueil
+            setTimeout(() => {
+                window.location.href = '/accueil';
+            }, 100);
+            return;
+        }
+        
+        // CAS 2 : "No App" error (c'est ton problème)
+        if (data.message && data.message.includes('No App')) {
+            // "No App" signifie que la connexion a réussi mais Frappe ne sait pas où rediriger
+            // Donc on force la redirection
+            setTimeout(() => {
+                window.location.href = '/accueil';
+            }, 100);
+            return;
+        }
+        
+        // CAS 3 : Erreur réelle
+        throw new Error(data.message || 'Erreur de connexion');
+        
+    } catch (error) {
+        // Afficher l'erreur sauf si c'est "No App" (qu'on gère ci-dessus)
+        if (!error.message.includes('No App')) {
+            errorDiv.textContent = error.message.includes('Incorrect') ? 
+                'Email ou mot de passe incorrect' : error.message;
+            errorDiv.classList.remove('hidden');
+        }
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+    }
+});
+
+// Fonction pour vérifier si déjà connecté
+function checkIfAlreadyLoggedIn() {
+    fetch('/api/method/frappe.auth.get_logged_user', {
+        credentials: 'include'
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.message && data.message !== "Guest") {
+            window.location.href = '/accueil';
+        }
+    });
+}
+
+// Vérifier au chargement de la page
+document.addEventListener('DOMContentLoaded', checkIfAlreadyLoggedIn);
+</script>
+
+{% endblock %}

@@ -1,0 +1,193 @@
+{% extends "templates/basic_site.html" %}
+
+{% block title %}Toutes les categories{% endblock %}
+
+{% block content %}
+
+<div class="relative flex min-h-screen flex-col overflow-x-hidden">
+
+<!-- Main Content -->
+<main class="flex-1 flex flex-col items-center py-8 px-4 sm:px-6 lg:px-40">
+<div class="w-full max-w-[1200px] flex flex-col gap-8">
+<!-- Heading Section -->
+<div class="flex flex-wrap justify-between items-end gap-6 animate-fade-in">
+<div class="flex flex-col gap-3 max-w-2xl">
+<h1 class="text-[#1d100c] dark:text-white text-4xl sm:text-5xl font-black leading-tight tracking-[-0.033em]">
+                            Nos Univers <span class="text-primary">Produits</span>
+</h1>
+<p class="text-[#a15c45] dark:text-gray-400 text-lg font-normal leading-normal">
+                            Explorez notre catalogue complet pour tous vos projets de construction et rénovation, du gros œuvre aux finitions.
+                        </p>
+</div>
+<!-- Quick Stats or Promo Badge -->
+<div class="hidden md:flex items-center gap-2 bg-secondary/10 px-4 py-2 rounded-full border border-secondary/20">
+<span class="material-symbols-outlined text-secondary">verified</span>
+<span class="text-secondary font-bold text-sm">Plus de 5000 références en stock</span>
+</div>
+</div>
+
+<!-- Image Grid Categories -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 animate-fade-in" style="animation-delay: 0.2s;">
+<!-- Card 1: Menuiserie -->
+<a class="group relative flex flex-col overflow-hidden rounded-xl aspect-[4/5] bg-gray-100 dark:bg-[#3a251e] cursor-pointer" href="categorie=Menuiserie">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Modern wooden door frame interior" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAHP0c8qrx5jYSXf9DpzXRg9SDECvbTth0qkNW7dYMIO9unqXb4BepQGbgXFXB5bxrnT92IV0CjAop2u8GMpL5Q2uQsqc53wYsCV9GwrYtREyegNpTmDkGZolNHhSS0spexJJGE-EC2w7KVrjssz0l_c31j2V1L-OydN8BoDvB564FR-iNUdRPKjb8iZgkBRfCLZUd292j2OZddkkVXoypW1meEJpyeu6OySdnmtmJ-ccBXJiAypZhVSWdA2-Sz8v_g3sLgjoUlilF6");'>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+<div class="absolute inset-x-0 bottom-0 p-5 flex flex-col gap-1 items-start translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+<h3 class="text-white text-2xl font-bold leading-tight">Menuiserie</h3>
+<div class="h-0.5 w-12 bg-secondary group-hover:w-full transition-all duration-500 ease-out"></div>
+<p class="text-gray-200 text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">Portes, fenêtres et bois de construction</p>
+<div class="mt-3 flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+</a>
+<!-- Card 2: Électricité -->
+<a class="group relative flex flex-col overflow-hidden rounded-xl aspect-[4/5] bg-gray-100 dark:bg-[#3a251e] cursor-pointer" href="categorie=Electricité">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Electrical wiring and smart home panel" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCvamI3FfTVbI4WhGdYq5MREw2alAoEQdZ9lUEKSPxcoDqs5eeX7P9NrKu0VMhBTpjq-wruYnKwP6uJVp44LmuuArjIvyn8edg18GFhRDISqpAEzItyYh91rAQh_PjhMHWVqZuWXJC5Z0h5SJoZCFkMvo0QB4WMPkIyKCYxUX1ko4YIAF6TLh5K0xrcaEB4dP8A2dGkKCLOdHhStk_oNuvMqjF1l9hcpUljcqVxW4pYywcDdWmHYmvRnOa5KmHBSlc91d3azLePW7KP");'>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+<div class="absolute inset-x-0 bottom-0 p-5 flex flex-col gap-1 items-start translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+<h3 class="text-white text-2xl font-bold leading-tight">Électricité</h3>
+<div class="h-0.5 w-12 bg-secondary group-hover:w-full transition-all duration-500 ease-out"></div>
+<p class="text-gray-200 text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">Câblage, prises et domotique</p>
+<div class="mt-3 flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+</a>
+<!-- Card 3: Peintures -->
+<a class="group relative flex flex-col overflow-hidden rounded-xl aspect-[4/5] bg-gray-100 dark:bg-[#3a251e] cursor-pointer" href="categorie=Peintures">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Colorful paint swatches and brushes" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCATyxnAk2rg6O5LjOGgOv8fg7ZTNv4Y0u3nEgTfmsnlBXxVc7-5C-uHh3B4w65AC7M79gC9CPG6Wm9jr3bGhZptoXH0O2bDdq5YaJdIdYCLeKKhRI5dnUfW_lFQzaragAE7YNbSLtS7Q217euYU7j5ecmfiO1UfTtc7UX07M8EWCwLBF2QdkfrsSIgTavbffVXwUt3Ic5H1RFOBCS1RO8t9kl_aYEzSJUqRzTAMKfah_T5BdREL8wyUdBIicQajB2y7I8WYEJI7ZGC");'>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+<div class="absolute inset-x-0 bottom-0 p-5 flex flex-col gap-1 items-start translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+<h3 class="text-white text-2xl font-bold leading-tight">Peintures</h3>
+<div class="h-0.5 w-12 bg-secondary group-hover:w-full transition-all duration-500 ease-out"></div>
+<p class="text-gray-200 text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">Intérieur, extérieur et accessoires</p>
+<div class="mt-3 flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+</a>
+<!-- Card 4: Lustres -->
+<a class="group relative flex flex-col overflow-hidden rounded-xl aspect-[4/5] bg-gray-100 dark:bg-[#3a251e] cursor-pointer" href="categorie=Lustres">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Modern ceiling light fixture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAVqkdOUvP8Ot-usrMsm3hzRJzMhvtAAd9a4pqKQMXeZ3vKTTQr34aKWfZv05WOu0KWuF0WEBEEeeAhU0LjCGBFhuHOkB7uuyVqTPLMkh4YJYmWubiam2xbr6hTPcyU9uHSkSmGexC26J9jmsuY4Ii9JQwFBzOMb_BQrnHu4xYVDuZj0l0KaJEaE-CpSQ86ym62BaIko0BGFbewoAYSZwn6rvyyIH8lOw5LMhnnVHrxVzGfOs9vtpntqhyDeDEhMwdsdCuBd5apQtPr");'>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+<div class="absolute inset-x-0 bottom-0 p-5 flex flex-col gap-1 items-start translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+<h3 class="text-white text-2xl font-bold leading-tight">Lustres</h3>
+<div class="h-0.5 w-12 bg-secondary group-hover:w-full transition-all duration-500 ease-out"></div>
+<p class="text-gray-200 text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">Éclairage décoratif et ampoules</p>
+<div class="mt-3 flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+</a>
+<!-- Card 5: Outillage -->
+<a class="group relative flex flex-col overflow-hidden rounded-xl aspect-[4/5] bg-gray-100 dark:bg-[#3a251e] cursor-pointer" href="categorie=outillage">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Professional power tools on workbench" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCdgFTtl8o_fhXoAs5dwBConSy-HAj7xq88LMuVMirRrhxtAu_j3Qx4SN623Tkvaoxat1IywfF1_zDoc1SeUtwsctxLOW0OhNbcXRMCimLxsg0TvXswxI72eXaBsxtuXA_0z5CcRF822bQ5GuH_CpkaqUIMSrfRzQ5mpY26S0RQ5PDVKd6YahvnUDqfVRec02NTatHR8Zd2I4NkvC72Sjvz9n175PbZJAjIfN6NUOPUklkmXf5iGu6lK8pqOjA5CWcoNxGJoJaFfm0i");'>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+<div class="absolute inset-x-0 bottom-0 p-5 flex flex-col gap-1 items-start translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+<h3 class="text-white text-2xl font-bold leading-tight">Outillage</h3>
+<div class="h-0.5 w-12 bg-secondary group-hover:w-full transition-all duration-500 ease-out"></div>
+<p class="text-gray-200 text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">Électroportatif et outillage à main</p>
+<div class="mt-3 flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+</a>
+<!-- Card 6: Carrelage -->
+<a class="group relative flex flex-col overflow-hidden rounded-xl aspect-[4/5] bg-gray-100 dark:bg-[#3a251e] cursor-pointer" href="categorie=carrelage">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Texture close up of ceramic tiles" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCBXUT6C8jnKyOlj2QeaGAHBGf69H7oymTN4fB0y6Z3I7PNVAJtwLS0TLw7FXAHvKVIfwdWQyw3Lyid6wSFfhDxf8aytKmjWBoMkSWA3BED6pL4PnRgk3l7HYPdVy5uEjMy55gGVRNOt3VQugFHNhnIqo7duoO4lsAMlit3YTueGO0mBxUPSXRySAI8y6bFs_B52nCCwsdBbTxYFpAid2bm9cjE6yjf-0MrvyZKZNjH46ZXcNEUoQx4YKbo1YZ92-LR6SmeNoMgBU-5");'>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+<div class="absolute inset-x-0 bottom-0 p-5 flex flex-col gap-1 items-start translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+<h3 class="text-white text-2xl font-bold leading-tight">Carrelage</h3>
+<div class="h-0.5 w-12 bg-secondary group-hover:w-full transition-all duration-500 ease-out"></div>
+<p class="text-gray-200 text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">Sol, mur et faïence</p>
+<div class="mt-3 flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+</a>
+<!-- Card 7: Plomberie -->
+<a class="group relative flex flex-col overflow-hidden rounded-xl aspect-[4/5] bg-gray-100 dark:bg-[#3a251e] cursor-pointer" href="categorie=plomberie">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Modern bathroom faucet and sink" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDrD95DRK2t1Elsu-E5rSJDfJ70e4OpJgSSQCoRrlhWHLWaDuHX5H3tfC-pKH4d0k86tf-kR3SCbrJfPG47dY45YBkvydOPDH6MXnJ8nN1T6EhKv2A2VW-fGMYAJPRv4PjvncLwDi2iJXVNmZBPxEbXK6dhDHPGI9nmzHZsDXnMcgeSqmmLGIerE0xZZ7LJ9yazdbyYFTR88UQ5sjj5qZMTc8y_OSRaju7UKTCEE9SYMnEXwzzY2M5zaQApOXtlPCmq4uEypXjnArY4");'>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+<div class="absolute inset-x-0 bottom-0 p-5 flex flex-col gap-1 items-start translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+<h3 class="text-white text-2xl font-bold leading-tight">Plomberie</h3>
+<div class="h-0.5 w-12 bg-secondary group-hover:w-full transition-all duration-500 ease-out"></div>
+<p class="text-gray-200 text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">Sanitaires, robinetterie et tuyaux</p>
+<div class="mt-3 flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+</a>
+<!-- Card 8: Divers -->
+<a class="group relative flex flex-col overflow-hidden rounded-xl aspect-[4/5] bg-gray-100 dark:bg-[#3a251e] cursor-pointer" href="categorie=Divers">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Construction safety gear helmet" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDX9oJKhlsdpu_0mswBZSbNASMxdW0p-PxcZGwSFy15rqjRBgeXyNXS3wo57kNllYDmOpKYnRc4Ag4kJJz6cpovFlQlN8DIRuXh8Ggz--p3flPLqVE8wV0kfHK-SBL9MLAkGewNMNpdJDd2fKa-pWocgmb_tlqbBEKLJaDZPgXnlfOB0QNrhzCIzKss7VAE0-nZJCifECg17J-Hd5Zli6GibhvOSYKBvHIasqr48AwljuR7bX5QoCJH9x_Ys8utbm9e01fqsArRfcSb");'>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+<div class="absolute inset-x-0 bottom-0 p-5 flex flex-col gap-1 items-start translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+<h3 class="text-white text-2xl font-bold leading-tight">Divers</h3>
+<div class="h-0.5 w-12 bg-secondary group-hover:w-full transition-all duration-500 ease-out"></div>
+<p class="text-gray-200 text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">Sécurité, nettoyage et accessoires</p>
+<div class="mt-3 flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+</a>
+</div>
+<!-- Feature Section -->
+<div class="flex flex-col gap-10 py-16">
+<div class="flex flex-col gap-4 text-center items-center">
+<h2 class="text-[#1d100c] dark:text-white text-3xl font-black leading-tight tracking-tight">
+                            Pourquoi choisir Top-Batiment ?
+                        </h2>
+<p class="text-[#a15c45] dark:text-gray-400 text-base font-normal max-w-2xl">
+                            L'expertise technique et le service d'excellence au cœur de chaque commande.
+                        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Feature 1 -->
+<div class="flex flex-col items-center text-center gap-4 rounded-xl border border-[#ead4cd] dark:border-[#523e38] bg-white dark:bg-[#23140f] p-8 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-center size-14 rounded-full bg-[#f4eae6] dark:bg-[#3a251e] text-primary">
+<span class="material-symbols-outlined text-3xl">verified</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-[#1d100c] dark:text-white text-lg font-bold">Qualité Pro</h3>
+<p class="text-[#a15c45] dark:text-gray-400 text-sm leading-relaxed">Matériaux certifiés pour les professionnels, testés et approuvés.</p>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="flex flex-col items-center text-center gap-4 rounded-xl border border-[#ead4cd] dark:border-[#523e38] bg-white dark:bg-[#23140f] p-8 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-center size-14 rounded-full bg-[#f4eae6] dark:bg-[#3a251e] text-primary">
+<span class="material-symbols-outlined text-3xl">local_shipping</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-[#1d100c] dark:text-white text-lg font-bold">Livraison Rapide</h3>
+<p class="text-[#a15c45] dark:text-gray-400 text-sm leading-relaxed">Sur chantier ou à domicile en 24/48h partout en Côte d'ivoire.</p>
+</div>
+</div>
+<!-- Feature 3 -->
+<div class="flex flex-col items-center text-center gap-4 rounded-xl border border-[#ead4cd] dark:border-[#523e38] bg-white dark:bg-[#23140f] p-8 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-center size-14 rounded-full bg-[#f4eae6] dark:bg-[#3a251e] text-primary">
+<span class="material-symbols-outlined text-3xl">headset_mic</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-[#1d100c] dark:text-white text-lg font-bold">Support Expert</h3>
+<p class="text-[#a15c45] dark:text-gray-400 text-sm leading-relaxed">Une équipe de conseillers techniques disponibles pour vos projets.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+</div>
+
+
+{% endblock %}

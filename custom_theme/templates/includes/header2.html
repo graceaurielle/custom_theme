@@ -1,0 +1,302 @@
+ <header class="relative z-50">
+
+ 
+ <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+    <!-- GRID RESPONSIVE -->
+    <div class="grid grid-cols-12 gap-4 items-center py-4">
+
+      <!-- LOGO -->
+      <div class="col-span-8 md:col-span-3 flex items-center gap-3">
+        <a href="/accueil" class="flex items-center gap-3">
+          <div class="flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-xl  text-white">
+              {% set logo = frappe.db.get_value("Website Settings", None, "app_logo") %}
+              <img src="{{ logo or '/assets/custom_theme/images/default-logo.png' }}">
+       </div>
+          <span class="text-xl md:text-2xl font-extrabold tracking-tight">
+            Top Batiment
+          </span>
+        </a>
+      </div>
+
+      <!-- MENU BUTTON (MOBILE) -->
+      <div class="col-span-4 flex justify-end md:hidden">
+        <button id="menu-button"
+          class="flex flex-col items-center text-text-main hover:text-[#E33900] active:text-[#E38700]">
+          <span class="material-symbols-outlined text-3xl">menu</span>
+        </button>
+      </div>
+
+      <!-- SEARCH -->
+      <div class="col-span-12 md:col-span-6 order-last md:order-none relative">
+        <div class="w-full flex items-center rounded-xl bg-background-off px-4 py-3 ring-1 ring-gray-200 focus-within:ring-2 focus-within:ring-primary/50">
+          <span class="material-symbols-outlined text-gray-400">search</span>
+          <input
+            id="product-search"
+            type="text"
+            placeholder="Rechercher un produit..."
+            class="w-full bg-transparent pl-3 text-sm focus:ring-0 border-none"
+          />
+        </div>
+      </div>
+
+      <!-- ACTIONS (DESKTOP / TABLETTE) -->
+      <div class="hidden md:flex col-span-3 justify-end gap-6 relative">
+
+        <button class="flex flex-col items-center hover:text-[#E33900] active:text-[#E38700]" onclick="window.location.href='/cart'">
+          <span class="material-symbols-outlined text-2xl">shopping_cart</span>
+          <span class="hidden lg:block text-xs">Panier</span>
+        </button>
+
+        <!-- Bouton Connexion / Profil -->
+<div class="flex items-center">
+    {% if frappe.session.user == "Guest" %}
+        <!-- Non connecté : bouton Connexion -->
+        <button class="flex flex-col items-center hover:text-[#E33900] active:text-[#E38700]" 
+                onclick="window.location.href='/authentification/login'">
+            <span class="material-symbols-outlined text-2xl">account_circle</span>
+            <span class="hidden lg:block text-xs">Connexion</span>
+        </button>
+    {% else %}
+        <!-- Connecté : initiales + lien vers profil ou logout -->
+        {% set user = frappe.get_doc("User", frappe.session.user) %}
+        {% set initials = (user.first_name[0] if user.first_name else "") + (user.last_name[0] if user.last_name else "") %}
+        {% if not initials %}
+            {% set initials = user.full_name[0] if user.full_name else "?" %}
+        {% endif %}
+
+        <button class="flex flex-col items-center hover:text-[#E33900] active:text-[#E38700]"
+                onclick="window.location.href='/me'" title="Mon profil">
+            <div class="w-8 h-8 rounded-full bg-[#E33900] text-white flex items-center justify-center font-bold text-sm">
+                {{ initials | upper }}
+            </div>
+            <span class="hidden lg:block text-xs">{{ user.first_name or user.full_name or "Profil" }}</span>
+        </button>
+    {% endif %}
+</div>
+
+
+
+        <div class="relative">
+          <button id="menu-button-desktop"
+            class="flex flex-col items-center hover:text-[#E33900] active:text-[#E38700]">
+            <span class="material-symbols-outlined text-2xl">menu</span>
+            <span class="hidden lg:block text-xs">Menu</span>
+          </button>
+
+          <!-- DROPDOWN DESKTOP -->
+          <div id="menu-dropdown-desktop"
+            class="absolute right-0 mt-3 w-48 bg-white border border-gray-200 rounded-xl shadow-lg hidden">
+            <a href= "/categorie=carrelage" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Carrelage</a>
+            <a href= "/categorie=Lustres" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Lustres</a>
+            <a href= "/categorie=Electricité" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Electricité</a>
+            <a href= "/categorie=Menuiserie" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Menuiserie</a>
+            <a href= "/categorie=Peintures" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Peintures</a>
+            <a href= "/categorie=plomberie" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Plomberie</a>
+            <a href= "/categorie=outillage" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Outillage</a>
+            <a href= "/categorie=Divers" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Divers</a>
+
+            {% if frappe.session.user != "Guest" %}
+              <a class="block px-4 py-3 hover:bg-primary hover:text-white" href="/logout">Déconnexion</a>
+            {% else %}
+              <a class="block px-4 py-3 hover:bg-primary hover:text-white" href="/login">Connexion</a>
+            {% endif %} 
+          
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!---test-->
+
+    <!-- Dans header2.html, après le bouton profil -->
+{% if frappe.session.user != "Guest" %}
+<div id="profile-dropdown" class="absolute right-0 top-full mt-3 w-48 bg-white border border-gray-200 rounded-xl shadow-lg hidden z-50">
+    <a href="/me" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white">
+        <span class="material-symbols-outlined text-base mr-2">person</span>
+        Mon profil
+    </a>
+    <a href="/orders" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white">
+        <span class="material-symbols-outlined text-base mr-2">receipt</span>
+        Mes commandes
+    </a>
+    <a href="/wishlist" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white">
+        <span class="material-symbols-outlined text-base mr-2">favorite</span>
+        Mes favoris
+    </a>
+   <div class="border-t border-gray-200">
+    <!-- API Frappe AVEC redirection vers /accueil -->
+    <a href="/api/method/custom_theme.api.custom_logout"
+   class="block px-4 py-3 text-red-600 hover:bg-red-50"
+   onclick="return confirm('Êtes-vous sûr de vouloir vous déconnecter ?');">
+    Déconnexion
+</a>
+</div>
+</div>
+{% endif %}
+
+<!-- Script de déconnexion -->
+<script>
+function logoutUser() {
+    fetch('/api/method/custom_theme.api.logout_user', {
+        method: 'POST',
+        headers: {
+            'X-Frappe-CSRF-Token': frappe.csrf_token
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = data.redirect || '/accueil';
+        }
+    })
+    .catch(error => {
+        console.error('Erreur déconnexion:', error);
+        window.location.reload();
+    });
+}
+
+// Gestion du dropdown profil
+document.addEventListener('DOMContentLoaded', function() {
+    const profileButton = document.querySelector('[onclick*="/me"]');
+    if (profileButton) {
+        profileButton.onclick = function(e) {
+            e.preventDefault();
+            const dropdown = document.getElementById('profile-dropdown');
+            dropdown.classList.toggle('hidden');
+            
+            // Fermer les autres dropdowns
+            document.getElementById('menu-dropdown-desktop').classList.add('hidden');
+            document.getElementById('menu-dropdown-mobile').classList.add('hidden');
+        };
+    }
+    
+    // Fermer les dropdowns en cliquant ailleurs
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('#profile-dropdown') && !e.target.closest('[onclick*="/me"]')) {
+            document.getElementById('profile-dropdown').classList.add('hidden');
+        }
+    });
+});
+</script>
+
+<!---fin test-->
+
+    <!-- DROPDOWN MOBILE -->
+    <div id="menu-dropdown-mobile"
+      class="md:hidden hidden mt-2 rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden">
+            <a href= "/categorie=carrelage" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Carrelage</a>
+            <a href= "/categorie=Lustres" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Lustres</a>
+            <a href= "/categorie=Electricité" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Electricité</a>
+            <a href= "/categorie=Menuiserie" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Menuiserie</a>
+            <a href= "/categorie=Peintures" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Peintures</a>
+            <a href= "/categorie=plomberie" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Plomberie</a>
+            <a href= "/categorie=outillage" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Outillage</a>
+            <a href= "/categorie=Divers" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Divers</a>
+
+      <div class="border-t">
+        <a href= "/cart"class="block px-4 py-3 hover:bg-[#E33900] hover:text-white">Panier</a>
+        <a class="block px-4 py-3 hover:bg-[#E33900] hover:text-white">Connexion</a>
+      </div>
+    </div>
+
+  </div>
+
+
+<script>
+let timer = null;
+const DELAY = 250;
+
+async function searchProducts(query) {
+    try {
+        const res = await fetch(
+            `/api/method/custom_theme.search.autocomplete_products?query=${encodeURIComponent(query)}`,
+            {
+                method: "GET",
+                headers: { "Accept": "application/json" }
+            }
+        );
+
+        if (!res.ok) {
+            console.error("HTTP error", res.status);
+            return [];
+        }
+
+        const data = await res.json();
+        return data.message || [];
+    } catch (e) {
+        console.error("Search error:", e);
+        return [];
+    }
+}
+
+
+function showResults(items) {
+    let box = document.getElementById("search-results");
+
+    if (!box) {
+        box = document.createElement("div");
+        box.id = "search-results";
+        box.className =
+            "absolute left-0 right-0 top-full mt-1 bg-white border rounded-xl shadow-lg z-50";
+        document.getElementById("product-search")
+            .closest(".relative")
+            .appendChild(box);
+    }
+
+    if (!items.length) {
+        box.innerHTML = `
+            <div class="p-4 text-center text-sm text-gray-500">
+                Aucun produit trouvé
+            </div>`;
+        return;
+    }
+
+    box.innerHTML = items.map(p => `
+        <a href="/${p.route}"
+           class="flex gap-3 px-4 py-3 hover:bg-gray-50 border-b last:border-0">
+            <img src="${p.image || "/assets/frappe/images/default-product.png"}"
+                 class="w-10 h-10 rounded object-cover bg-gray-100">
+            <span class="font-medium text-gray-900">${p.name}</span>
+        </a>
+    `).join("");
+}
+
+function hideResults() {
+    const box = document.getElementById("search-results");
+    if (box) box.remove();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const input = document.getElementById("product-search");
+    if (!input) return;
+
+    input.addEventListener("input", e => {
+        clearTimeout(timer);
+        const q = e.target.value.trim();
+        if (!q) {
+            hideResults();
+            return;
+        }
+
+        timer = setTimeout(async () => {
+            const results = await searchProducts(q);
+            showResults(results);
+        }, DELAY);
+    });
+
+    document.addEventListener("click", e => {
+        if (!e.target.closest("#product-search") &&
+            !e.target.closest("#search-results")) {
+            hideResults();
+        }
+    });
+});
+</script>
+
+</header>
+
+
+

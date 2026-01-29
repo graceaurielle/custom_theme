@@ -1,0 +1,180 @@
+/* Boutons (Primary, Secondary) */
+:root {
+  --bs-primary: #E36000;
+  --bs-secondary: #E31100;
+}
+
+
+/* Boutons ERPNext spécifiques */
+
+.btn-primary {
+  background-color: #E33900 !important;
+  border-color: #E38700!important;
+}
+
+.btn-primary:hover {
+  background-color: #E38700 !important;
+}
+
+
+/* menu latéral Couleur du fond */
+.layout-side-section {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.6),
+    rgba(227, 96, 0, 0.85)
+  );
+}
+
+
+.widget.links-widget-box .widget-head .widget-label .widget-title {
+  color: var( --bs-secondary) !important;
+}
+
+/*.ellipsis{
+  color: purple !important;
+}*/
+.link-item {
+  color: purple !important;
+}
+
+[data-page-route="Workspaces"] .h4
+{
+   color:var( --bs-primary) !important;
+}
+
+
+
+
+/* menu latéral Texte du menu */
+/* .sidebar-menu a {
+  color: #ffffff !important;
+}
+
+.sidebar-menu a:hover {
+  background-color: #1b263b;
+} */
+/* Menu latéral - état normal (texte + icônes) */
+.sidebar-menu a,
+.sidebar-menu a i,
+.sidebar-menu a svg {
+  color: #633E32 !important;
+    transition: 
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+
+}
+
+/* Menu latéral - survol */
+.sidebar-menu a:hover,
+.sidebar-menu a:hover i,
+.sidebar-menu a:hover svg {
+  background-color: #BF4044 !important;
+  color: #FDF2F2 !important;
+  transform: scale(1.06);
+}
+
+
+
+
+/* Modifier la barre du haut (Top Bar) */
+/*.navbar {
+  background-color: #1b263b !important;
+}
+
+.navbar .navbar-brand,
+.navbar a {
+  color: #ffffff !important;
+}
+
+
+/* Modifier Titre du DocType dans une fiche (Form View) */
+.page-title .title-text {
+  color: #E31100 !important; /* Vert */
+}
+
+/* Barre de recherche globale */
+/* Fond de la barre de recherche globale */
+.navbar .awesomplete input {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.6),
+    rgba(227, 96, 0, 0.85)
+  ) !important;
+
+  border: 1px solid rgba(227, 96, 0, 0.4) !important;
+
+  /* Couleur du texte (complémentaire, lisible) */
+  color: #3a1f00 !important;
+
+  font-weight: 550;
+}
+
+/* Placeholder (plus doux) */
+.awesomplete input::placeholder {
+  color: rgba(58, 31, 0, 0.6);
+}
+
+/* Focus */
+.awesomplete input:focus {
+  box-shadow: 0 0 0 2px rgba(227, 96, 0, 0.35);
+}
+
+
+
+
+
+/* connection */
+
+
+
+/* Page de login - image de fond responsive */
+/*#page-login {
+  min-height: 100vh;
+  background-image: url("/assets/custom_theme/images/ouvrier.webp");
+  background-size: cover;          /* clé du responsive */
+/*background-position: center;     /* centre l'image */
+  /*background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#page-login::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 0;
+}
+
+/* Le formulaire reste au-dessus */
+/*#page-login .page-card {
+  position: relative;
+  z-index: 1;
+}
+
+
+
+
+
+/* Modifier les en-têtes (titres de pages, doctypes) */
+
+/*.page-head {
+  background-color: #E36000;
+  border-bottom: 1px solid #bbdefb;
+} */
+
+/*.page-title {
+  color: #0d47a1;
+}
+
+
+
+
+/* Modifier les listes (List View) */
+/*.list-row:hover {
+  background-color: #f1f8ff;
+} */
+

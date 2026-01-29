@@ -5,6 +5,17 @@ app_description = "pour la couleur du site"
 app_email = "gatse@amoaman.com"
 app_license = "mit"
 
+
+
+app_include_css = [
+    "/assets/custom_theme/css/theme.css"
+]
+
+web_include_css = [
+    "/assets/custom_theme/css/theme_web.css"
+]
+
+
 # Apps
 # ------------------
 

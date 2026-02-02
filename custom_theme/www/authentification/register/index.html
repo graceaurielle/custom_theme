@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function() {
         submitBtn.textContent = 'Création en cours...';
         hideAlerts();
         
-        // Appel API
+        // Appel 
         waitForFrappe(() => {
             frappe.call({
                 method: "custom_theme.api.create_website_user",

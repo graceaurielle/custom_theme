@@ -1,69 +1,30 @@
-<header class="relative z-50">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+ <header class="relative z-50">
+
+ 
+ <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
     <!-- GRID RESPONSIVE -->
     <div class="grid grid-cols-12 gap-4 items-center py-4">
 
-      <!-- === ZONE HAUT : LOGO + ACTIONS MOBILE === -->
-      <div class="col-span-12 flex items-center justify-between md:hidden gap-3">
-        <!-- Logo mobile (un peu plus petit) -->
-        <a href="/accueil" class="flex items-center gap-2 flex-shrink-0">
-          <div class="flex h-10 w-10 items-center justify-center rounded-xl text-white flex-shrink-0">
-            {% set logo = frappe.db.get_value("Website Settings", None, "app_logo") %}
-            <img src="{{ logo or '/assets/custom_theme/images/default-logo.png' }}" class="max-h-9 max-w-full object-contain">
-          </div>
-          <span class="text-lg font-extrabold tracking-tight">
-            Top Batiment
-          </span>
-        </a>
-
-        <!-- Actions mobiles : panier + profil + menu -->
-        <div class="flex items-center gap-4">
-          <!-- Panier mobile -->
-          <button class="flex items-center hover:text-[#E33900] active:text-[#E38700]" onclick="window.location.href='/cart'">
-            <span class="material-symbols-outlined text-2xl">shopping_cart</span>
-          </button>
-
-          <!-- Profil / Connexion mobile -->
-          <div class="flex items-center">
-            {% if frappe.session.user == "Guest" %}
-              <button class="flex items-center hover:text-[#E33900] active:text-[#E38700]"
-                      onclick="window.location.href='/authentification/login'">
-                <span class="material-symbols-outlined text-2xl">account_circle</span>
-              </button>
-            {% else %}
-              {% set user = frappe.get_doc("User", frappe.session.user) %}
-              {% set initials = (user.first_name[0] if user.first_name else "") + (user.last_name[0] if user.last_name else "") %}
-              {% if not initials %}
-                {% set initials = user.full_name[0] if user.full_name else "?" %}
-              {% endif %}
-              <button class="flex items-center hover:text-[#E33900] active:text-[#E38700]"
-                      onclick="window.location.href='/me'" title="Mon profil">
-                <div class="w-8 h-8 rounded-full bg-[#E33900] text-white flex items-center justify-center font-bold text-sm">
-                  {{ initials | upper }}
-                </div>
-              </button>
-            {% endif %}
-          </div>
-
-          <!-- Hamburger mobile -->
-          <button id="menu-button"
-                  class="flex flex-col items-center text-text-main hover:text-[#E33900] active:text-[#E38700]">
-            <span class="material-symbols-outlined text-3xl">menu</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- === LOGO DESKTOP (seulement visible sur md+) === -->
-      <div class="hidden md:block md:col-span-3 flex items-center gap-3">
+      <!-- LOGO -->
+      <div class="col-span-8 md:col-span-3 flex items-center gap-3">
         <a href="/accueil" class="flex items-center gap-3">
-          <div class="flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-xl text-white">
-            {% set logo = frappe.db.get_value("Website Settings", None, "app_logo") %}
-            <img src="{{ logo or '/assets/custom_theme/images/default-logo.png' }}">
-          </div>
+          <div class="flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-xl  text-white">
+              {% set logo = frappe.db.get_value("Website Settings", None, "app_logo") %}
+              <img src="{{ logo or '/assets/custom_theme/images/default-logo.png' }}">
+       </div>
           <span class="text-xl md:text-2xl font-extrabold tracking-tight">
             Top Batiment
           </span>
         </a>
+      </div>
+
+      <!-- MENU BUTTON (MOBILE) -->
+      <div class="col-span-4 flex justify-end md:hidden">
+        <button id="menu-button"
+          class="flex flex-col items-center text-text-main hover:text-[#E33900] active:text-[#E38700]">
+          <span class="material-symbols-outlined text-3xl">menu</span>
+        </button>
       </div>
 
       <!-- SEARCH -->
@@ -79,7 +40,7 @@
         </div>
       </div>
 
-      <!-- === ACTIONS DESKTOP (exactement comme ton code original) === -->
+      <!-- ACTIONS (DESKTOP / TABLETTE) -->
       <div class="hidden md:flex col-span-3 justify-end gap-6 relative">
 
         <button class="flex flex-col items-center hover:text-[#E33900] active:text-[#E38700]" onclick="window.location.href='/cart'">
@@ -87,8 +48,8 @@
           <span class="hidden lg:block text-xs">Panier</span>
         </button>
 
-        <!-- Bouton Connexion / Profil (desktop) -->
-       <div class="flex items-center">
+        <!-- Bouton Connexion / Profil -->
+<div class="flex items-center">
     {% if frappe.session.user == "Guest" %}
         <!-- Non connecté : bouton Connexion -->
         <button class="flex flex-col items-center hover:text-[#E33900] active:text-[#E38700]" 
@@ -112,7 +73,8 @@
             <span class="hidden lg:block text-xs">{{ user.first_name or user.full_name or "Profil" }}</span>
         </button>
     {% endif %}
-      </div>
+</div>
+
 
 
         <div class="relative">
@@ -125,23 +87,32 @@
           <!-- DROPDOWN DESKTOP -->
           <div id="menu-dropdown-desktop"
             class="absolute right-0 mt-3 w-48 bg-white border border-gray-200 rounded-xl shadow-lg hidden">
-            <a href="/categorie=carrelage" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Carrelage</a>
-            <a href="/categorie=Lustres" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Lustres</a>
-            <a href="/categorie=Electricité" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Electricité</a>
-            <a href="/categorie=Menuiserie" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Menuiserie</a>
-            <a href="/categorie=Peintures" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Peintures</a>
-            <a href="/categorie=plomberie" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Plomberie</a>
-            <a href="/categorie=outillage" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Outillage</a>
-            <a href="/categorie=Divers" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Divers</a>
+            <a href= "/categorie=carrelage" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Carrelage</a>
+            <a href= "/categorie=Lustres" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Lustres</a>
+            <a href= "/categorie=Electricité" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Electricité</a>
+            <a href= "/categorie=Menuiserie" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Menuiserie</a>
+            <a href= "/categorie=Peintures" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Peintures</a>
+            <a href= "/categorie=plomberie" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Plomberie</a>
+            <a href= "/categorie=outillage" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Outillage</a>
+            <a href= "/categorie=Divers" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Divers</a>
 
+            {% if frappe.session.user != "Guest" %}
+              <a class="block px-4 py-3 hover:bg-primary hover:text-white" href="/logout">Déconnexion</a>
+            {% else %}
+              <a class="block px-4 py-3 hover:bg-primary hover:text-white" href="/login">Connexion</a>
+            {% endif %} 
+          
           </div>
         </div>
       </div>
 
     </div>
 
-    <!-- Tout le reste reste 100% identique à ton code original -->
-    {% if frappe.session.user != "Guest" %}
+
+    <!---test-->
+
+    <!-- Dans header2.html, après le bouton profil -->
+{% if frappe.session.user != "Guest" %}
 <div id="profile-dropdown" class="absolute right-0 top-full mt-3 w-48 bg-white border border-gray-200 rounded-xl shadow-lg hidden z-50">
     <a href="/me" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white">
         <span class="material-symbols-outlined text-base mr-2">person</span>
@@ -166,9 +137,8 @@
 </div>
 {% endif %}
 
-
-    <!-- Script de gestion profil (inchangé) -->
-   <script>
+<!-- Script de déconnexion -->
+<script>
 function logoutUser() {
     fetch('/api/method/custom_theme.api.logout_user', {
         method: 'POST',
@@ -190,32 +160,34 @@ function logoutUser() {
 
 // Gestion du dropdown profil
 document.addEventListener('DOMContentLoaded', function() {
-  const profileButtons = document.querySelectorAll('[onclick*="/me"]');
-  profileButtons.forEach(button => {
-    button.onclick = function(e) {
-      e.preventDefault();
-      const dropdown = document.getElementById('profile-dropdown');
-      dropdown.classList.toggle('hidden');
-      // Fermer les autres dropdowns
-      document.getElementById('menu-dropdown-desktop').classList.add('hidden');
-      document.getElementById('menu-dropdown-mobile').classList.add('hidden');
-    };
-  });
-  // Fermer les dropdowns en cliquant ailleurs
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('#profile-dropdown') && !e.target.closest('[onclick*="/me"]')) {
-      document.getElementById('profile-dropdown').classList.add('hidden');
+    const profileButton = document.querySelector('[onclick*="/me"]');
+    if (profileButton) {
+        profileButton.onclick = function(e) {
+            e.preventDefault();
+            const dropdown = document.getElementById('profile-dropdown');
+            dropdown.classList.toggle('hidden');
+            
+            // Fermer les autres dropdowns
+            document.getElementById('menu-dropdown-desktop').classList.add('hidden');
+            document.getElementById('menu-dropdown-mobile').classList.add('hidden');
+        };
     }
-  });
+    
+    // Fermer les dropdowns en cliquant ailleurs
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('#profile-dropdown') && !e.target.closest('[onclick*="/me"]')) {
+            document.getElementById('profile-dropdown').classList.add('hidden');
+        }
+    });
 });
-
-
 </script>
 
-    <!-- DROPDOWN MOBILE (inchangé) -->
+<!---fin test-->
+
+    <!-- DROPDOWN MOBILE -->
     <div id="menu-dropdown-mobile"
       class="md:hidden hidden mt-2 rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden">
-      <a href= "/categorie=carrelage" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Carrelage</a>
+            <a href= "/categorie=carrelage" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Carrelage</a>
             <a href= "/categorie=Lustres" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Lustres</a>
             <a href= "/categorie=Electricité" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Electricité</a>
             <a href= "/categorie=Menuiserie" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Menuiserie</a>
@@ -224,12 +196,16 @@ document.addEventListener('DOMContentLoaded', function() {
             <a href= "/categorie=outillage" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Outillage</a>
             <a href= "/categorie=Divers" class="block px-4 py-3 hover:bg-[#E33900] hover:text-white active:bg-[#E38700]">Divers</a>
 
+      <div class="border-t">
+        <a href= "/cart"class="block px-4 py-3 hover:bg-[#E33900] hover:text-white">Panier</a>
+        <a class="block px-4 py-3 hover:bg-[#E33900] hover:text-white">Connexion</a>
+      </div>
     </div>
 
-    </div>
+  </div>
 
-    <!-- Script de recherche (inchangé) -->
-    <script>
+
+<script>
 let timer = null;
 const DELAY = 250;
 
@@ -318,7 +294,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
-    </script>
+</script>
 
-  </div>
 </header>

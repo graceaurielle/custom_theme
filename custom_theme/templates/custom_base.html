@@ -1,9 +1,7 @@
 {% extends "templates/web.html" %}
 
 {# ------------------ TITLE ------------------ #}
-{% block title %}
-Top batiment
-{% endblock %}
+{% block title %}Top batiment{% endblock %}
 
 {# ------------------ HEAD ------------------ #}
 {% block head %}
@@ -11,78 +9,75 @@ Top batiment
 
     {% set logo = frappe.db.get_value("Website Settings", None, "app_logo") %}
 
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" href="{{ logo or '/assets/custom_theme/images/téléchargement.png' }}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{{ logo or '/assets/custom_theme/images/téléchargement.png' }}">
-    <link rel="icon" type="image/png" sizes="512x512" href="{{ logo or '/assets/custom_theme/images/téléchargement.png' }}">
+    <link rel="icon" href="{{ logo or '/assets/custom_theme/images/téléchargement.png' }}">
 
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
-    <!-- Tailwind -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
     <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#E33900",
-                        secondary: "#E38700",
-                        "background-light": "#FFFFFF",
-                        "background-off": "#F9F9F9",
-                        "background-dark": "#1a1a1a",
-                        "text-main": "#1d100c",
-                        "text-muted": "#6b7280",
-                    },
-                    fontFamily: {
-                        sans: ["Inter", "sans-serif"],
-                        display: ["Inter", "sans-serif"],
-                    },
-                },
-            },
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#E33900",
+              secondary: "#E38700",
+            }
+          }
         }
+      }
     </script>
 
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-    </style>
+header .hidden {
+  display: none !important;
+}
+header .md\:flex {
+  display: flex !important;
+}
+header .md\:block {
+  display: block !important;
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+</style>
+
 {% endblock %}
 
-{% block navbar %} 
-     <!-- Header -->
-    {% include "templates/includes/header2.html" %} 
+{# ------------------ NAVBAR ------------------ #}
+{% block navbar %}
+    {% include "templates/includes/header2.html" %}
 {% endblock %}
 
-{# ------------------ BODY ------------------ #}
-{% block page_content %}
-
-    <main class="bg-background-light text-text-main">
-        {% block content %}{% endblock %}
-    </main>
-
-{% endblock %}
-
-
-{% block footer %} 
- <!-- Footer -->
+{# ------------------ FOOTER ------------------ #}
+{% block footer %}
     {% include "templates/includes/footer2.html" %}
 {% endblock %}
+
 {# ------------------ SCRIPTS ------------------ #}
 {% block script %}
     {{ super() }}
     <script src="/assets/custom_theme/js/toogle_header.js"></script>
 {% endblock %}
-
-

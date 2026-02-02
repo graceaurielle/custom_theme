@@ -31,8 +31,11 @@ def create_website_user(full_name, email, new_password, phone=None, company_name
             "enabled": 1,
             "send_welcome_email": 0,  # Désactiver l'email par défaut de Frappe si je
         }).insert(ignore_permissions=True)
-        
-        
+    
+
+        # IMPORTANT : sauvegarder + reload
+        user.save(ignore_permissions=True)
+        frappe.db.commit()
         
         # 3. CRÉER LE CUSTOMER ASSOCIÉ
         customer_name = company_name or full_name
